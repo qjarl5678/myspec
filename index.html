@@ -1,22 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
+	<!DOCTYPE html>
+	<html lang="en">
 
-<head>
+	<head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-  <title>BamKi - Spec</title>
+	<title>BamKi - Spec</title>
 
-  <!-- Custom fonts for this theme -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	<!-- Custom fonts for this theme -->
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-  <!-- Theme CSS -->
-  <link href="css/freelancer.min.css" rel="stylesheet">
+	<!-- Theme CSS -->
+	<link href="css/freelancer.min.css" rel="stylesheet">
+	
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<style>
+		/* reset */
+		*{margin:0; padding:0}
+		html{-webkit-tap-highlight-color:transparent !important; -webkit-text-size-adjust:auto; }
+		body,input,label{font-family:ShinhanCardM; font-weight:bold; -webkit-text-size-adjust:auto; }
+		ul,ol,li{list-style:none; }
+		img{display:block; border:0;}
+		button{border:none; background:none; cursor:pointer; -webkit-transform:translate3d(0,0,0); outline:none; }
+
+		/* common */
+		.hide{position:absolute; left:-5000px; width:0; height:0; overflow:hidden; visibility:hidden; z-index:-1; }	
+		.clearfix:after{content:''; display:block; clear:both;}
+		.scrollOff {position:fixed;overflow:hidden;height:100%;}
+
+		/* content */
+		.portfolio .portfolio-item{width: 50%;}
+		/*.navbar-nav .nav-item .nav-link:hover{background-image: linear-gradient(90deg, #fbda3e, #f5efcb);}*/
+		.academic{margin-bottom: 4rem;text-align: left;}
+		.academic li{display: none;transition: all 2s;}
+		.academic li p{display: inline-block;width: 50%;}
+		.academic li p:first-child{text-align: left;}
+		.academic li p:last-child{text-align: right;}
+		
+		.typing-txt{display: none;}
+		.typing ul li.on{display: inline-block;animation-name: cursor;animation-duration: 0.3s;animation-iteration-count: infinite;} 
+		@keyframes cursor{
+			0%{border-right: 1px solid #fff} 
+			50%{border-right: 1px solid #000} 
+			100%{border-right: 1px solid #fff} 
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			var typingBool = false; 
+			var typingIdx = 0; 
+			var liIndex = 0;
+			var tyInt = '';
+			var liLength = $('.typing-txt>ul>li').length;
+			var typingTxt = $('.typing-txt>ul>li').eq(liIndex).text();
+			
+			/* 팝업 열릴때 텍스트 효과 */
+			$(document).on('click','.pop_open',function(){
+				var dataName = $(this).data('name');
+				var add = 500;
+				
+				if(dataName == 'academic01'){	// 학력 팝업
+					setTimeout(function(){
+						for(var i=1;i<=$('.academic01 li').length;i++){
+							//console.log(add);
+							$('.academic01 li:nth-child('+i+')').fadeIn(add);
+							add = add + 200;
+						}
+					},100);
+				}else if(dataName == 'academic02'){		// 기술 팝업
+					if($('.typing ul li:last-child').hasClass('on') == false){
+						typingTxt = typingTxt.split('');
+					}
+
+					if(typingBool == false){ // 타이핑이 진행되기 전
+						typingBool = true; 
+						tyInt = setInterval(typing,100);
+					}
+					
+					typing();
+					
+				}else if(dataName == 'academic03'){		// 경력 팝업
+					setTimeout(function(){
+						for(var i=1;i<=$('.academic03 li').length;i++){
+							//console.log(add);
+							$('.academic03 li:nth-child('+i+')').fadeIn(add);
+							add = add + 200;
+						}
+					},100);
+				}
+			});
+			/* 팝업 닫힐때 */
+			$(document).on('click','.btn-primary, .close',function(){
+				$('.academic li').css('display','none');
+				/*clearInterval(tyInt);
+				typingBool = false; 
+				liIndex = 0;
+				typingIdx = 0;
+				typingTxt = $('.typing-txt>ul>li').eq(liIndex).text();
+				$('.typing ul li').html('');*/
+				//console.log(typingTxt);
+				//console.log($('.typing ul li').html());
+			});
+			
+			/* 타이핑 효과 */
+			function typing(){ 
+				$('.typing ul li').removeClass('on');
+				$('.typing ul li').eq(liIndex).addClass('on');
+
+				if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복 
+					$('.typing ul li').eq(liIndex).append(typingTxt[typingIdx]);
+					typingIdx++; 
+				}else{ // 한문장이끝나면
+					if(liIndex<liLength-1){
+						liIndex++; 		// 다음문장으로  가기위해 인덱스를 1증가
+						typingIdx=0;	// 다음문장을 타이핑하기위한 셋팅
+						typingBool = false; 
+						typingTxt = $('.typing-txt>ul>li').eq(liIndex).text(); 
+
+						clearInterval(tyInt);
+
+						setTimeout(function(){	// 1초후에 다시 타이핑 반복 시작
+							tyInt = setInterval(typing,100);
+						},1000);
+					}else if(liIndex==liLength-1){	// 마지막 문장까지 써지면 반복 종료
+						clearInterval(tyInt);
+					}
+				}
+			}
+		});
+	</script>
 
 </head>
 
@@ -51,7 +168,7 @@
     <div class="container d-flex align-items-center flex-column">
 
       <!-- Masthead Avatar Image -->
-      <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt="">
+      <img class="masthead-avatar mb-5" src="img/mimo.jpg" alt="">
 
       <!-- Masthead Heading -->
       <h1 class="masthead-heading text-uppercase mb-0">Kim Bum Ki</h1>
@@ -93,72 +210,72 @@
         <!-- Portfolio Item 1 -->
         <div class="col-md-6 col-lg-4">
           <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 pop_open" data-name="academic01">
               <div class="portfolio-item-caption-content text-center text-white">
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
+            <img class="img-fluid" src="img/portfolio/iconmonstr-school-23-240.png" alt="">
           </div>
         </div>
 
         <!-- Portfolio Item 2 -->
         <div class="col-md-6 col-lg-4">
           <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 pop_open" data-name="academic02">
               <div class="portfolio-item-caption-content text-center text-white">
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/cake.png" alt="">
+            <img class="img-fluid" src="img/portfolio/iconmonstr-tools-8-240.png" alt="">
           </div>
         </div>
 
         <!-- Portfolio Item 3 -->
         <div class="col-md-6 col-lg-4">
           <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 pop_open" data-name="academic03">
               <div class="portfolio-item-caption-content text-center text-white">
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+            <img class="img-fluid" src="img/portfolio/iconmonstr-building-20-240.png" alt="">
           </div>
         </div>
 
         <!-- Portfolio Item 4 -->
         <div class="col-md-6 col-lg-4">
           <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 pop_open" data-name="academic04">
               <div class="portfolio-item-caption-content text-center text-white">
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/game.png" alt="">
+            <img class="img-fluid" src="img/portfolio/iconmonstr-task-1-240.png" alt="">
           </div>
         </div>
 
         <!-- Portfolio Item 5 -->
         <div class="col-md-6 col-lg-4">
           <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 pop_open" data-name="academic05">
               <div class="portfolio-item-caption-content text-center text-white">
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/safe.png" alt="">
+            <img class="img-fluid" src="img/portfolio/iconmonstr-thumb-10-240.png" alt="">
           </div>
         </div>
 
         <!-- Portfolio Item 6 -->
         <div class="col-md-6 col-lg-4">
           <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 pop_open" data-name="academic06">
               <div class="portfolio-item-caption-content text-center text-white">
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/submarine.png" alt="">
+            <img class="img-fluid" src="img/portfolio/iconmonstr-globe-thin-240.png" alt="">
           </div>
         </div>
 
@@ -187,10 +304,10 @@
       <!-- About Section Content -->
       <div class="row">
         <div class="col-lg-4 ml-auto">
-          <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p>
+          <p class="lead">내용</p>
         </div>
         <div class="col-lg-4 mr-auto">
-          <p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p>
+          <p class="lead">내용</p>
         </div>
       </div>
 
@@ -198,7 +315,7 @@
       <div class="text-center mt-4">
         <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
           <i class="fas fa-download mr-2"></i>
-          Free Download!
+          이력서 다운로드
         </a>
       </div>
 
@@ -336,7 +453,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">학력</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -346,10 +463,26 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="">
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+				<ul class="academic academic01">
+					<li>
+						<p class="data">2012.02</p><p>서울영락유헬스고 졸업</p>
+					</li>
+					<li>
+						<p class="data">2012.03 - 2015.02</p><p>서일대 졸업</p>
+					</li>
+					<li>
+						<p class="data">2014.08 - 2017.12</p><p>메이젠인터렉트</p>
+					</li>
+					<li>
+						<p class="data">2018.01 - 2018.06</p><p>프론트앤드 교육</p>
+					</li>
+					<li>
+						<p class="data">2018.08 - ing</p><p>(주)피터패트</p>
+					</li>
+				</ul>
+                <button class="btn btn-primary aos-init aos-animate" href="#" data-dismiss="modal" data-aos="fade-up">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
                 </button>
@@ -375,7 +508,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">기술</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -385,9 +518,30 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/cake.png" alt="">
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/cake.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="typing-txt"> 
+					<ul>
+						<li>개발천재 테스트넘키의 기술 첫번째!</li>
+						<li>줄넘키!</li>
+						<li>영재 테스트넘키의 기술 두번째!</li>
+						<li>위닉스 테스트 하기!</li>
+						<li>당장 이직하고픈 테스트넘키의 기술 세번째!</li>
+						<li>얼마 하지 않은 헬스로 자부심 가지기!</li>
+						<li>끄읏!</li>
+					</ul>
+				</div>
+				<div class="typing">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div> 
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
@@ -414,7 +568,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">경력</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -424,9 +578,25 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/circus.png" alt="">
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/circus.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+				<ul class="academic academic03">
+					<li>
+						<p class="data">2012.02</p><p>서울영락유헬스고 졸업</p>
+					</li>
+					<li>
+						<p class="data">2012.03 - 2015.02</p><p>서일대 졸업</p>
+					</li>
+					<li>
+						<p class="data">2014.08 - 2017.12</p><p>메이젠인터렉트</p>
+					</li>
+					<li>
+						<p class="data">2018.01 - 2018.06</p><p>프론트앤드 교육</p>
+					</li>
+					<li>
+						<p class="data">2018.08 - ing</p><p>(주)피터패트</p>
+					</li>
+				</ul>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
@@ -453,7 +623,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">참여 프로젝트 </h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -463,7 +633,7 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/game.png" alt="">
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/game.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -492,7 +662,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">장점</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -502,7 +672,7 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/safe.png" alt="">
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/safe.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -531,7 +701,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">앞으로의 포부</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -541,7 +711,7 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
