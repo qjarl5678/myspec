@@ -94,7 +94,15 @@
 							add = add + 200;
 						}
 					},100);
-				}
+				}else if(dataName == 'academic04'){		// 경력 팝업
+                    setTimeout(function(){
+                        for(var i=1;i<=$('.academic04 li').length;i++){
+                            //console.log(add);
+                            $('.academic04 li:nth-child('+i+')').fadeIn(add);
+                            add = add + 200;
+                        }
+                    },100);
+                }
 			});
 			/* 팝업 닫힐때 */
 			$(document).on('click','.btn-primary, .close',function(){
@@ -323,7 +331,6 @@
                     이상 열심히 할 준비가 되어있는 김범기 였습니다.</p>
             </div>
         </div>
-
         <!-- About Section Button -->
       <div class="text-center mt-4">
         <a class="btn btn-xl btn-outline-light" href="#">
@@ -631,7 +638,7 @@
                 <!-- Portfolio Modal - Image -->
 <!--                <img class="img-fluid rounded mb-5" src="img/portfolio/game.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-                  <ul class="academic academic03">
+                  <ul class="academic academic04">
                       <li>
                           <p class="data">2019.10 </p><p>위닉스 홈페이지 리뉴얼 작업(고도몰 고도화방식)</p>
                       </li>
@@ -639,10 +646,10 @@
                           <p class="data">2019.06 - 2020.03</p><p>위닉스 운영(유지보수)</p>
                       </li>
                       <li>
-                          <p class="data">2020.03</p><p>대기업 서버이전 프로젝트(Service Check)</p>
+                          <p class="data">2020.01</p><p>대기업 웹사이트 운영(유지보수)</p>
                       </li>
                       <li>
-                          <p class="data">2020.03</p><p>대기업 웹사이트 운영(유지보수)</p>
+                          <p class="data">2020.03</p><p>대기업 서버이전 프로젝트(Service Check)</p>
                       </li>
                       <li>
                           <p class="data">2020.04 - Now</p><p>프로젝트 작업중(PHP,Oracle)</p>
