@@ -38,9 +38,9 @@
 		/*.navbar-nav .nav-item .nav-link:hover{background-image: linear-gradient(90deg, #fbda3e, #f5efcb);}*/
 		.academic{margin-bottom: 4rem;text-align: left;}
 		.academic li{display: none;transition: all 2s;}
-		.academic li p{display: inline-block;width: 50%;}
-		.academic li p:first-child{text-align: left;}
-		.academic li p:last-child{text-align: right;}
+		.academic li p{display: inline-block;width: 100%;text-align:center;}
+		/* .academic li p:first-child{text-align: left;}
+		.academic li p:last-child{text-align: right;} */
 
 		.typing-txt{display: none;}
 		.typing ul li.on{display: inline-block;animation-name: cursor;animation-duration: 0.3s;animation-iteration-count: infinite;}
@@ -108,14 +108,6 @@
 			/* 팝업 닫힐때 */
 			$(document).on('click','.btn-primary, .close',function(){
 				$('.academic li').css('display','none');
-				/*clearInterval(tyInt);
-				typingBool = false;
-				liIndex = 0;
-				typingIdx = 0;
-				typingTxt = $('.typing-txt>ul>li').eq(liIndex).text();
-				$('.typing ul li').html('');*/
-				//console.log(typingTxt);
-				//console.log($('.typing ul li').html());
 			});
 
 			/* 타이핑 효과 */
@@ -226,7 +218,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/iconmonstr-school-23-240.png" alt="">
+            <img class="img-fluid" src="img/portfolio/icon_bachelor_cap.svg" alt="">
           </div>
         </div>
 
@@ -238,7 +230,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/iconmonstr-tools-8-240.png" alt="">
+            <img class="img-fluid" src="img/portfolio/icon_technology.svg" alt="">
           </div>
         </div>
 
@@ -250,7 +242,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/iconmonstr-building-20-240.png" alt="">
+            <img class="img-fluid" src="img/portfolio/icon_career.svg" alt="">
           </div>
         </div>
 
@@ -262,7 +254,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/iconmonstr-globe-thin-240.png" alt="">
+            <img class="img-fluid" src="img/portfolio/icon_project.svg" alt="">
           </div>
         </div>
 
@@ -274,7 +266,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/iconmonstr-thumb-10-240.png" alt="">
+            <img class="img-fluid" src="img/portfolio/icon_advantages.svg" alt="">
           </div>
         </div>
 
@@ -286,7 +278,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/iconmonstr-task-1-240.png" alt="">
+            <img class="img-fluid" src="img/portfolio/icon_about_me.svg" alt="">
           </div>
         </div>
 
@@ -594,21 +586,20 @@
                 <!-- Portfolio Modal - Image -->
 <!--                <img class="img-fluid rounded mb-5" src="img/portfolio/circus.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-				<ul class="academic academic03">
+                  <ul class="academic academic03">
                     <li>
                         <p class="data">2017.03 - 2018.10<br></p><p>아이파킹주식회사 (개발팀)</p>
                     </li>
-					<li>
-						<p class="data">2018.10 - 2019.01</p><p>파킹클라우드 (개발팀)</p>
-					</li>
-					<li>
-						<p class="data">2019.02 - 2020.07 </p><p>이비즈빌 (개발팀)</p>
-					</li>
+                    <li>
+                      <p class="data">2018.10 - 2019.01</p><p>파킹클라우드 (개발팀)</p>
+                    </li>
+                    <li>
+                      <p class="data">2019.02 - 2020.07 </p><p>이비즈빌 (개발팀)</p>
+                    </li>
                     <li>
                       <p class="data">2020.07 - NOW </p><p>프리랜서</p>
                     </li>
-
-				</ul>
+                  </ul>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
@@ -649,10 +640,10 @@
                 <!-- Portfolio Modal - Text -->
                   <ul class="academic academic04">
                       <li>
-                        <p class="data">2019.10 - 2020.02</p><p><a href="https://www.winix.com/kr/" target="_blank">위닉스 홈페이지 리뉴얼 작업(고도몰 고도화방식)</a></p>
+                          <p class="data">2019.10 - 2020.02</p><a href="https://www.winix.com/kr/" target="_blank"><p>위닉스 홈페이지 리뉴얼 작업(고도몰 고도화방식)</p></a>
                       </li>
                       <li>
-                        <p class="data">2019.06 - 2020.03</p><p><a href="https://www.winix.com/kr/" target="_blank">위닉스 운영(유지보수)</a></p>
+                        <p class="data">2019.06 - 2020.03</p><a href="https://www.winix.com/kr/" target="_blank"><p>위닉스 운영(유지보수)</p></a>
                       </li>
                       <li>
                           <p class="data">2020.01 - 2020.07</p><p>LG이노택 운영(유지보수)</p>
@@ -661,7 +652,7 @@
                           <p class="data">2020.03</p><p>LG이노택 프로젝트(Service Check)</p>
                       </li>
                       <li>
-                          <p class="data">2020.04 - 2020.07</p><p><a href="https://www.focusmediakorea.com/" target="_blank">포커스미디어 리뉴얼 작업(PHP,Oracle)</a></p>
+                          <p class="data">2020.04 - 2020.07</p><a href="https://www.focusmediakorea.com/"><p>포커스미디어 리뉴얼 작업(PHP,Oracle)</p></a>
                       </li>
                       <li>
                           <p class="data">2020.10 - 2020.11</p><p>LG 키오스크 어플(Kotlin, LG API)</p>
@@ -705,12 +696,12 @@
                 <!-- Portfolio Modal - Image -->
 <!--                <img class="img-fluid rounded mb-5" src="img/portfolio/safe.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-                <p class="mb-5">저는 주로 맡은일은 끝까지 책임지고 하는 성격이며, 만약 정해진 목표가 있다면 그 목표를 이루기 위해
-                    매우 열심히 달려가는 성격입니다.<br><br>
-                    그렇지만 무조건 목표를 향해 돌진만 하는것이 아닌 협업시에는 상대방을 많이 이해하고 배려해주며 같이 프로젝트를
+                <p class="mb-5">저는 주로 맡은일은 끝까지 책임지며 하는 성격이며, 만약 정해진 목표가 있다면 그 목표를 이루기 위해
+                    매우 열심히 달려가는 성격입니다.<br><br> 그래서인지 몰라도 주위 사람들로부터  박새로이 같은 성격이라는 말도 자주 들었습니다.<br><br>
+                    그렇지만 무조건 목표를 향해 돌진만 하는것이 아닌 협업시에는 상대방을 많이 이해하고 상대방을 배려해주며 같이 프로젝트를
                     성공적으로 완료 할 수 있는 온화한 성격입니다.<br><br>
                     하지만 저는 다른사람에게 도움을 잘 요청하지 못하거나 거절을 잘 못하는 성격을 가지고 있어서 때로는 곤란한 상황에 처하기도 하지만
-                    최근에는 이성적으로 판단하여 곤란한 상황에 처할 것 같을때에는 단호하게 거절하기도 합니다.<br><br>
+                    최근에는 이성적으로 판단하여 곤란한 상황에 처할 것 같을때에는 단호하게 거절하는 연습을 하고있습니다.<br><br>
                 </p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
@@ -755,7 +746,7 @@
                     (<a href="https://kimbumki420.blog.me/" target="_blank">Click here</a>) 제 블로그 주소입니다.<br>
                     저는 고등학교 때에는 전국영어의사소통능력평가에서 금상을 수상 받은 수상내역이 있는만큼 영어를 사용한 기본적인 의사소통이 가능합니다.<br>
                     또한 회사와 학교를 다니며 남는 시간을 잘 활용하여 현재 국가기술 자격증인 정보처리기능사와 빅데이터 전문가 자격증을 소지하였으며 정보처리산업기사 시험을 볼 수 있는 자격을 갖추어 반드시 이번년도안에 정보처리 산업기사 획득을 목표로 삼고있습니다.<br>
-                    현재 ASP, PHP, Mysql, MSsql, ajax, JavaScript, JQuery, JSP를 사용한 홈페이지 리뉴얼 및 유지보수와 이벤트 페이지에 관련된 일을 1년 이상 하였고 고도몰 고도화작업, 리눅스를 접하여 본 경험이 있으며 HTML, CSS 또한 파악할 수 있습니다.<br><br>
+                    현재 ASP, PHP, Mysql, MSsql, ajax, JavaScript, JQuery, JSP를 사용한 홈페이지 리뉴얼 밑 유지보수와 이벤트 페이지에 관련된 일을 1년 이상 하였으며 고도몰 고도화작업, 리눅스를 접하여 본 경험이 있으며 HTML, CSS 또한 파악할 수 있습니다.<br><br>
                     하지만 시대가 급격히 발전하는만큼 저도 또한 그만큼 성장하고 싶습니다.<br><br>
                     고등학교 때에는 Python 언어를 사용한 차량번호 인식률 개선 작업에 참여하였으며 라즈베리파이 또한 사용해보았던 경험이 있습니다.<br><br>
                     저는 정말 열심히 또 성실히 공부하고 제 능력을 더더욱 키워 우리나라에 조금 더 도움이 될 수 있는 인재가 될것을 목표로 삼고 있습니다.<br><br>
