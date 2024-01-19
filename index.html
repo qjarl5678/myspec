@@ -14,7 +14,7 @@
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
+  <script src="https://kit.fontawesome.com/7e7733aed3.js" crossorigin="anonymous"></script>
 	<!-- Theme CSS -->
 	<link href="css/freelancer.min.css" rel="stylesheet">
 
@@ -25,6 +25,9 @@
 		html{-webkit-tap-highlight-color:transparent !important; -webkit-text-size-adjust:auto; }
 		body,input,label{font-family:ShinhanCardM; font-weight:bold; -webkit-text-size-adjust:auto; }
 		ul,ol,li{list-style:none; }
+    #portfolioModal2 li {
+      padding: 5px;
+    }
 		img{display:block; border:0;}
 		button{border:none; background:none; cursor:pointer; -webkit-transform:translate3d(0,0,0); outline:none; }
 
@@ -82,7 +85,7 @@
 
 					if(typingBool == false){ // 타이핑이 진행되기 전
 						typingBool = true;
-						tyInt = setInterval(typing,100);
+						tyInt = setInterval(typing,38);
 					}
 
 					typing();
@@ -95,6 +98,7 @@
 							add = add + 200;
 						}
 					},100);
+
 				}else if(dataName == 'academic04'){		// 경력 팝업
                     setTimeout(function(){
                         for(var i=1;i<=$('.academic04 li').length;i++){
@@ -103,7 +107,15 @@
                             add = add + 200;
                         }
                     },100);
-                }
+        }else if(dataName == 'academic06'){		// 경력 팝업
+                    setTimeout(function(){
+                        for(var i=1;i<=$('.academic06 li').length;i++){
+                            //console.log(add);
+                            $('.academic06 li:nth-child('+i+')').fadeIn(add);
+                            add = add + 200;
+                        }
+                    },100);
+        }
 			});
 			/* 팝업 닫힐때 */
 			$(document).on('click','.btn-primary, .close',function(){
@@ -128,8 +140,8 @@
 						clearInterval(tyInt);
 
 						setTimeout(function(){	// 1초후에 다시 타이핑 반복 시작
-							tyInt = setInterval(typing,100);
-						},1000);
+							tyInt = setInterval(typing,30);
+						},300);
 					}else if(liIndex==liLength-1){	// 마지막 문장까지 써지면 반복 종료
 						clearInterval(tyInt);
 					}
@@ -439,7 +451,7 @@
         <!-- Footer About Text -->
         <div class="col-lg-4">
           <h4 class="text-uppercase mb-4">About Bamki</h4>
-          <p class="lead mb-0">He is young and smart. If you want to visit his blog?
+          <p class="lead mb-0">If you want to visit my blog?
             <a href="https://blog.naver.com/kimbumki420">Click Here</a>.</p>
         </div>
 
@@ -529,7 +541,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">기술</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tech Skills</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -543,23 +555,32 @@
                 <!-- Portfolio Modal - Text -->
                 <div class="typing-txt">
 					<ul>
-						<li>SERVER SIDE : Node.js, PHP, JSP, ASP, ASP.NET</li>
-						<li>CLIENT SIDE : React.js, Next.js, HTML, CSS, JAVA SCRIPT</li>
-						<li>DBMS : MY SQL, ORACLE, MS_SQL, SQLite</li>
-						<li>PROGRAMMING : C, JAVA, C++, Python</li>
-            <li>OS : Windows 8, Linux(centOS, ubuntu) </li>
-            <li>Cloud : Aws EC2, RDS, Lamda, Api Gateway ..</li>
+						<li>Backend : Node.js, PHP, Spring Boot, Flask</li>
+						<li>Frontend : React.js, Next.js, html, css, javascript</li>
+            <li>Database : MY SQL, ORACLE, MS SQL Server</li>
+						<li>System : Python, JAVA, C, C++, .NET, Power Builder </li>
+            <li>OS : linux, centOS, ubuntu, kali linux </li>
+            <li>Cloud : Aws EC2, RDS, Lamda, Api Gateway, route53, s3 bucket </li>
+            <li>Etc : github, github actions, bitbucket, jira, confluence, trello </li>
 					</ul>
+          
 				</div>
 				<div class="typing">
 					<ul>
 						<li></li>
+            <br><hr>
 						<li></li>
+            <br><hr>
 						<li></li>
+            <br><hr>
 						<li></li>
+            <br><hr>
 						<li></li>
+            <br><hr>
 						<li></li>
+            <br><hr>
 						<li></li>
+            <br><hr>
 					</ul>
 				</div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -588,7 +609,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">경력</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Experience</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -616,11 +637,14 @@
                     <li><p>㈜동양미래대학교 (컴퓨터공학부)</p>
                       <p class="data">2021.03 - 2022.08 </p>
                     </li>
-                    <li><p>㈜아이아라 (개발1팀)</p>
+                    <li><p>㈜아이아라 (개발1팀 / 파트장)</p>
                       <p class="data">2022.08 - 2022.12 </p>
                     </li>
-                    <li><p>㈜나인파이브 (C&D팀)</p>
-                      <p class="data">2023.01 - Now </p>
+                    <li><p>㈜나인파이브 (C&D팀 /  선임연구원)</p>
+                      <p class="data">2023.01 - 2023.11 </p>
+                    </li>
+                    <li><p>㈜넥솔시스템 (개발팀/ 현역 병역특례)</p>
+                      <p class="data">2023.11 - Now </p>
                     </li>
                   </ul>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -755,7 +779,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">자기소개</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">자격/어학/수상</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -765,30 +789,44 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">-->
+<!--                <img class="img-fluid rounded mb-5" src="img/portfolio/game.png" alt="">-->
                 <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  안녕하세요. 저는 고등학교 2학년 때부터 산학 일체형 도제학교를 통하여 회사에 입사하게 되었고, 입사하여 배운 경험과 지식으로 열심히 할 준비가 되어있습니다. <br><br>고등학교 때부터 회사에 다니며 시간이 날 때 틈틈이 공부하였던 것을 제 블로그에 정리해 놓았습니다. <br>
-                  (<a href="https://blog.naver.com/kimbumki420" target="_blank">Click here</a>) 제 블로그 주소입니다.<br>
-                  <br>
-                  저는 고등학교 때에는 전국 영어 의사소통능력 평가에서 금상을 수상 받은 수상내용이 있는 만큼 영어를 사용한 기본적인 의사소통이 가능합니다.<br>
-                  또한 베트남, 러시아 등 해외 개발 인력을 관리하는 파트장을 맡아 해외 개발자들과 영어로 커뮤니케이션을 진행하며 코드 리뷰 등 협업을 했었던 경험이 있으며 현재도 해외 인력을 관리하며 영어로 소통을 하고 있습니다.<br>
-                  <br>
-                  저는 회사와 학교에 다니며 남는 시간을 잘 활용하여 현재 국가 기술 자격증인 정보처리기사, 빅데이터 전문가 자격증을 소지하였으며 최근에는 정보보안기사를 준비중입니다.<br><br>
-                  또한 학교에 다니며 전공동아리의 멘토로 인공지능 개발 및 티칭을 통해 만든 작품을 KES 작품전에 출품하였고 해당 작품으로 최우수상을 수료한 경험이 있습니다.
-                  <br><br>
-                  Node.js, React.js, Next.js, Spring-boot , PHP, Mysql, MSsql(SQL SERVER), MongoDB, jQuery(AJAX), JavaScript, Python(Flask) 등의 언어와 다양한 프레임워크를 사용하여 웹개발 및 유지보수와 관련된 개발경험이 있으며 고도몰 고도화 작업 및 리눅스 서버 관리 또한 진행해봤던 경험이 있습니다. <br><br>점점 발전하는 시대에 맞춰서 최근에는 AWS Lamda, ApiGateway, Git Actions를 통해 Slack과 연동하여 CI/CD 자동 배포 파이프 라인을 구현하였습니다.
-                  <br><br>
-                  시대가 급격히 발전하는 만큼 저도 뒤처지고 싶지 않으며 계속 성장하고 싶어 열심히 또 성실히 회사에 근무하며 공부하고 제 능력을 더더욱 키우고 싶습니다.<br><br>고등학교 때에는 Python 언어를 사용한 차량 번호 인식률 개선 작업에 참여하였으며 라즈베리 파이 또한 사용해보았던 경험이 있습니다.
-                  <br><br>
-                  번데기는 성체가 되기 전 보잘것없어 보이지만 나비가 되어서 날개를 펴고 성체가 되었을 때 비로소 아름다워 보입니다.<br><br>
-                  저 또한 아직은 번데기이지만 성충인 나비가 되는 과정을 보여드리고 싶습니다.
-                  <br><br>
-                  아직 많이 부족하고 배울 것도 많지만 절대 포기하지 않고 끝까지 달려 나비가 될 자신이 있습니다.<br><br>
-                  천재는 노력하는 사람을 이기지 못하고 노력하는 사람은 즐기는 사람을 이기지 못한다는 말과 같이 저 역시 즐기고, 노력하는 사람이 되겠습니다.
-                  <br><br>
-                  이상 열심히 할 준비가 되어있는 김범기였습니다.
-                  </p>
+                  <ul class="academic academic06">
+                    <li>
+                      <p class="data">2022.12 - <span style="color: #1abc9c;">정보처리기사 (한국산업인력공단) </span></p>
+                  </li>
+                  <li>
+                    <p class="data">2022.12 - <span style="color: #1abc9c;">2022 동양미래 expo 전시회 최우수상</span></p>
+                </li>
+                <li>
+                    <p class="data">2022.12 - <span style="color: #1abc9c;">기술창업아이디어 경진대회 우수상</span></p>
+                </li>
+                <li>
+                    <p class="data">2022.11 - <span style="color: #1abc9c;">Dmmc with dmu 창업경진대회 최우수상</span></p>
+                </li>
+                <li>
+                    <p class="data">2022.11 - <span style="color: #1abc9c;">스마트 프로젝트 경진대회 장려상</span></p>
+                </li>
+                <li>
+                    <p class="data">2022.05 - <span style="color: #1abc9c;">소프트웨어 프로젝트 설계 경진대회 최우수상</span></p>
+                </li>
+                <li>
+                    <p class="data">2021.03 - <span style="color: #1abc9c;">수석상</span></p>
+                </li>
+                <li>
+                    <p class="data">2020.12 - <span style="color: #1abc9c;">기술창업아이디어 경진대회 장려상</span></p>
+                </li>
+                <li>
+                    <p class="data">2020.08 - <span style="color: #1abc9c;">2020 스마트 ICT 창의공학 경진대회 장려상</span></p>
+                </li>
+                <li>
+                    <p class="data">2019.08 - <span style="color: #1abc9c;">빅데이터전문가 (한국교육검정원)</span></p>
+                </li>
+                <li>
+                    <p class="data">2017.12 - <span style="color: #1abc9c;">정보처리기능사</span></p>
+                </li>
+                                
+                  </ul>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
